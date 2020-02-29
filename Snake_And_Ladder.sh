@@ -7,7 +7,7 @@ PLAYER=1
 
 # Variable
 position=0
-
+timeOfReachedPosition=0
 # player Roll die 1 TO 6
 function rollDie()
 {
@@ -21,6 +21,7 @@ randomNumber1=$((RANDOM%3+1))
 # Check Snake position Ladder position and No Play
 while [[ $position -ne 100 ]]
 do
+	(( timeOfReachedPosition++ ))
 	case $randomNumber1 in
    	1)
       	position=$(($position))
@@ -47,3 +48,4 @@ do
       	;;
 	esac
 done
+printf "Reached to position : $timeOfReachedPosition"
