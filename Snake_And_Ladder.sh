@@ -19,21 +19,27 @@ echo $randomNumber
 randomNumber1=$((RANDOM%3+1))
 
 # Check Snake position Ladder position and No Play
-case $randomNumber1 in
-   1)
-      position=$(($position))
-      echo "No Play - position is =$position" 
-      ;;
+while [[ $position -lt 100 ]]
+do
+	case $randomNumber1 in
+   	1)
+      	position=$(($position))
+      	echo "No Play - position is =$position" 
+      	;;
 
-   2)
-      ladderRandom="$(rollDie)"
-      position=$(($position+$ladderRandom))
-      echo "Ladder - position is =$position" 
-      ;;
+   	2)
+      	ladderRandom="$(rollDie)"
+      	position=$(($position+$ladderRandom))
+      	echo "Ladder - position is =$position" 
+      	;;
 
-   3)
-      snakeRandom="$(rollDie)"
-      position=$(($position-$snakeRandom))
-      echo "Snake - position is =$position" 
-      ;;
-esac
+   	3)
+      	snakeRandom="$(rollDie)"
+			if [ $position -ne 0 ]
+      	then
+				position=$(($position-$snakeRandom))
+      	fi
+			echo "Snake - position is =$position" 
+      	;;
+	esac
+done
